@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- PLEASE NO CHANGES BELOW THIS LINE (UNTIL I SAY SO) -->
+  <script language="javascript" type="text/javascript" src="libraries/p5.min.js"></script>
+
+  <script language="javascript" type="text/javascript" src="Aries_.js"></script>
+  <!-- OK, YOU CAN MAKE CHANGES BELOW THIS LINE AGAIN -->
+  <audio id="soundSpace" src="space.mp3"></audio>
+  <audio id="soundGravity" src="gravity.mp3"></audio>
+  <link rel="icon" href="staricon.ico" type="image/x-icon">
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      width:100%;
+    }
+/* Navbar container */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  font-family: 'DungGeunMo', sans-serif;
+
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* The dropdown container */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: 'DungGeunMo', sans-serif; /* Important for vertical align on mobile phones */
+    font-size: 20px;
+  margin: 0; /* Important for vertical align on mobile phones */
+}
+
+/* Add a red background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: #ddd;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+@font-face {
+  font-family: 'DungGuenMo';
+  src: url('DungGeunMo.ttf');
+  font-weight: bold;
+  font-size: 20px;
+}
+  </style>
+</head>
+
+<body>
+
+<div class="navbar">
+  <a href="index.html">별빛산책</a>
+  <a id='saveButton' href="#">화면저장</a>
+
+     <div class="dropdown">
+    <button class="dropbtn">화면회전
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a id="stopScreen">정지</a>
+      <a id="startScreen">시작</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropbtn">별자리여행
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="index.html">천칭자리</a>
+      <a href="Leo.html">사자자리</a>
+      <a href="Capricornus.html">염소자리</a>
+      <a href="Aries.html">양자리</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+  <button class="dropbtn">우주의 소리
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-content">
+    <a id="spaceButton" href="#">우주 유영</a>
+    <a id="gravityButton" href="#">별똥별</a>
+    <a id="stop">소리 맺기</a>
+  </div>
+</div>
+
+  <div class="dropdown">
+  <button class="dropbtn">제작자정보
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-content">
+    <a>심수연</a>
+    <a>GIST 2023-1</a>
+    <a>아트앤테크놀로지</a>
+  </div>
+</div>
+
+</div>
+
+  <script>
+   var currentSound = null; 
+    // 버튼 클릭 이벤트 처리
+    document.getElementById('saveButton').addEventListener('click', function() {
+      saveCanvas('starwalk', 'png'); // 이미지 이름과 형식을 지정하여 저장
+    });
+
+    
+  // space 버튼 클릭 이벤트 처리
+  document.getElementById('spaceButton').addEventListener('click', function() {
+    if (currentSound) {
+      currentSound.pause(); // 이전 음원 재생을 중지
+    }
+    var soundSpace = document.getElementById('soundSpace');
+    soundSpace.play(); // space.mp3 재생
+    currentSound = soundSpace; // 현재 재생 중인 음원으로 설정
+  });
+
+  // gravity 버튼 클릭 이벤트 처리
+  document.getElementById('gravityButton').addEventListener('click', function() {
+    if (currentSound) {
+      currentSound.pause(); // 이전 음원 재생을 중지
+    }
+    var soundGravity = document.getElementById('soundGravity');
+    soundGravity.play(); // gravity.mp3 재생
+    currentSound = soundGravity; // 현재 재생 중인 음원으로 설정
+  });
+    document.getElementById('stop').addEventListener('click', function() {
+    if (currentSound) {
+      currentSound.pause(); // 이전 음원 재생을 중지
+    }
+  });
+    document.getElementById('stopScreen').addEventListener('click', function() {
+    stop=1;
+  });
+      document.getElementById('startScreen').addEventListener('click', function() {
+    stop=0;
+  });
+  </script>
+</body>
+</html>
